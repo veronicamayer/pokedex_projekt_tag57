@@ -19,6 +19,7 @@ const ListItem = (props) => {
            {/* {dann img_url} */}
                 <img src={test_pokemon_image} alt={`Bild des Pokemeno {props.name}`} />
             </article>
+            
             <article>
             <p>#001 {props.nr}</p>
             <p>Bulbasaur {props.name}</p>
