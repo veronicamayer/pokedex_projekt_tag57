@@ -106,7 +106,7 @@ const ListPage = () => {
                     name={pokemon.name}
                 ></ListItem>
             ))}
-        </section>
+        </div>
     );
 };
 export default ListPage;
