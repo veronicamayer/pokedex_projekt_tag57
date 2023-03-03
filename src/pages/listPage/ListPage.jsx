@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-
+import Header from "../../components/header/Header.jsx";
 import "./ListPage.scss";
 
 import Pokeball from "../../img/pokeball.png";
 
 const ListPage = () => {
     const [pokemonList, setPokemonList] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
     const [isLoading, setIsLoading] = useState(true);
+    const [childData, setChildData] = useState('')
 
     const fetchPokemon = async (limit, offset) => {
         try {
@@ -57,38 +57,44 @@ const ListPage = () => {
 
     /* initial fetch  */
     useEffect(() => {
-        fetchPokemon(20, 0);
+        fetchPokemon(1300, 0);
     }, []);
 
     /* batch fetches */
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setIsLoading(true);
-            const offset = pokemonList.length;
-            fetchPokemon(20, offset);
-        }, 100);
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         setIsLoading(true);
+    //         const offset = pokemonList.length;
+    //         fetchPokemon(20, offset);
+    //     }, 100);
 
-        return () => clearInterval(interval);
-    }, [pokemonList]);
+    //     return () => clearInterval(interval);
+    // }, [pokemonList]);
 
     /* search */
     const filteredPokemonList = pokemonList.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+        pokemon.name.toLowerCase().includes(childData.toLowerCase())
     );
 
-    const handleSearch = (event) => {
-        setSearchTerm(event.target.value);
-    };
+    const childToParent = (elem) => {
+        setChildData(elem)
+        console.log(childData);
+    }
+
+    // const handleSearch = (event) => {
+    //     setSearchTerm(event.target.value);
+    // };
 
     return (
         <div className="pokemon-grid">
             <div className="search-bar">
-                <input
+                <Header childToParent={childToParent}/>
+                {/* <input
                     type="text"
                     placeholder="Search Pokemon"
                     value={searchTerm}
                     onChange={handleSearch}
-                />
+                /> */}
             </div>
             {filteredPokemonList.map((pokemon, i) => (
                 <div key={i} className="pokemon-card">
