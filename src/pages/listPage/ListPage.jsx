@@ -1,3 +1,5 @@
+import ListItem from "../../components/listItem/ListItem";
+
 import React, { useEffect, useState } from "react";
 import Header from "../../components/header/Header.jsx";
 import "./ListPage.scss";
@@ -97,18 +99,14 @@ const ListPage = () => {
                 /> */}
             </div>
             {filteredPokemonList.map((pokemon, i) => (
-                <div key={i} className="pokemon-card">
-                    <h2>{pokemon.id}</h2>
-                    <h1>{pokemon.name}</h1>
-                    <img src={pokemon.image} alt={pokemon.name} />
-                    <p>Types: {pokemon.types}</p>
-                    <p>Abilities: {pokemon.abilities}</p>
-                    <p>Moves: {pokemon.moves}</p>
-                </div>
+                <ListItem
+                    key={i}
+                    img_url={pokemon.image}
+                    nr={pokemon.id}
+                    name={pokemon.name}
+                ></ListItem>
             ))}
-            {isLoading && <p>Loading...</p>}
-        </div>
+        </section>
     );
 };
-
 export default ListPage;

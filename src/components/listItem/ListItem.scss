@@ -1,0 +1,44 @@
+.listItem {
+    width: 50vw;
+
+    background: linear-gradient(52.41deg, #FFE1C6 4.87%, #FFCB05 94.37%);
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+
+    background-color: red;
+    margin-top: 200px;
+
+    article:nth-of-type(1) {
+
+         height: 20vw;         /* 120px */
+
+        img {
+            //width: 42%;
+            position: relative;
+            z-index: 1;
+            bottom: 11vw;    /* bild nach oben 70px */
+
+            height: 30vw;    /* 188px */
+
+        }
+    }
+
+    article:nth-of-type(2) {
+
+        background-color: rgb(238, 232, 232);
+        display: flex;
+        justify-content: space-between;
+        border-radius: 0 0 20px 20px;
+
+        p {
+            padding: 0 2vw;
+            color: #333333;
+            font-size: clamp(0.8rem, 4vw, 1.1rem);
+
+        }
+    }
+}
