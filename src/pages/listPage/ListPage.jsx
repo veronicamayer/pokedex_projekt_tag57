@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 
+import React, { useEffect, useState } from "react";
+
+import Header from "../../components/header/Header.jsx";
+
 import "./ListPage.scss";
 
 import Pokeball from "../../img/pokeball.png";
@@ -12,8 +16,8 @@ import DetailsPage from "../detailsPage/DetailsPage";
 
 const ListPage = () => {
     const [pokemonList, setPokemonList] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
     const [isLoading, setIsLoading] = useState(true);
+    const [childData, setChildData] = useState("");
 
     const fetchPokemon = async (limit, offset) => {
         try {
@@ -63,31 +67,36 @@ const ListPage = () => {
 
     /* initial fetch  */
     useEffect(() => {
-        fetchPokemon(20, 0);
+        fetchPokemon(1300, 0);
     }, []);
 
     /* batch fetches */
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setIsLoading(true);
-            const offset = pokemonList.length;
-            fetchPokemon(20, offset);
-        }, 100);
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         setIsLoading(true);
+    //         const offset = pokemonList.length;
+    //         fetchPokemon(20, offset);
+    //     }, 100);
 
-        return () => clearInterval(interval);
-    }, [pokemonList]);
+    //     return () => clearInterval(interval);
+    // }, [pokemonList]);
 
     /* search */
     const filteredPokemonList = pokemonList.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+        pokemon.name.toLowerCase().includes(childData.toLowerCase())
     );
 
-    const handleSearch = (event) => {
-        setSearchTerm(event.target.value);
+    const childToParent = (elem) => {
+        setChildData(elem);
+        console.log(childData);
     };
+
 
     return (
         <section className="listPage">
+         <div>
+                <Header childToParent={childToParent} />
+            </div>
             {filteredPokemonList.map((pokemon, i) => (
                 <Link to={`/details/${pokemon.name}`}>
                 <ListItem

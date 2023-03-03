@@ -1,0 +1,22 @@
+.header {
+    background-color: #d1dadd;
+    width: 100vw;
+    position: fixed;
+    top: 0px;
+    z-index: 2;
+    text-align: center;
+    padding: 2vh;
+    > div {
+        display: flex;
+        justify-content: center;
+        gap: 2vw;
+        padding: 2vh 0;
+
+        > button {
+            border: none;
+            :hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
