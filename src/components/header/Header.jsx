@@ -4,12 +4,6 @@ import './Header.scss'
 
 export default function Header({childToParent}) {
 
-    // const [searchTerm, setSearchTerm] = useState("");
-
-    // const handleSearch = (event) => {
-    //     setSearchTerm(event.target.value);
-    // }
-
     return (
         <nav className='header'>
             <img src={HeaderImage} alt="" />
