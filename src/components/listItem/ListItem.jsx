@@ -12,21 +12,30 @@ console.log(test_pokemon_image)
 
 
 const ListItem = (props) => {
-    return ( 
-        <section className="listItem">
+    return (
 
-            <article>
-           {/* {dann img_url} */}
-                <img src={test_pokemon_image} alt={`Bild des Pokemeno {props.name}`} />
-            </article>
-            
-            <article>
-            <p>#001 {props.nr}</p>
-            <p>Bulbasaur {props.name}</p>
-            </article>
+        <>
+            <section className="listItem">
 
-        </section>
-     );
+                <article>
+                    {/* {dann img_url} */}
+{/*                     <img src={test_pokemon_image} alt={`Bild des Pokemeno {props.name}`} />
+ */}                    <img src={props.img_url} alt={`Bild des Pokemeno {props.name}`} />
+                </article>
+
+                <article>
+                    <p>#001 {`#${props.nr}`}</p>
+                    <p>Bulbasaur {props.name}</p>
+                </article>
+            </section>
+            <p>{props.type1} - {props.type2}</p>
+
+        </>
+    );
 }
- 
+
 export default ListItem;
+
+
+/* sprites zeile 9748
+front_default  */
