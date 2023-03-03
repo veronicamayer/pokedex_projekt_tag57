@@ -1,10 +1,18 @@
 import ListItem from "../../components/listItem/ListItem";
 
+import { useEffect, useState } from "react";
+
+import { Link } from "react-router-dom";
+
 import React, { useEffect, useState } from "react";
+
 import Header from "../../components/header/Header.jsx";
+
 import "./ListPage.scss";
 
 import Pokeball from "../../img/pokeball.png";
+
+import DetailsPage from "../detailsPage/DetailsPage";
 
 const ListPage = () => {
     const [pokemonList, setPokemonList] = useState([]);
@@ -83,24 +91,23 @@ const ListPage = () => {
         console.log(childData);
     };
 
-    // const handleSearch = (event) => {
-    //     setSearchTerm(event.target.value);
-    // };
 
     return (
-        <div className="listPage">
-            <div>
+        <section className="listPage">
+         <div>
                 <Header childToParent={childToParent} />
             </div>
             {filteredPokemonList.map((pokemon, i) => (
+                <Link to={`/details/${pokemon.name}`}>
                 <ListItem
                     key={i}
                     img_url={pokemon.image}
                     nr={pokemon.id}
                     name={pokemon.name}
                 ></ListItem>
+                </Link>
             ))}
-        </div>
+        </section>
     );
 };
 export default ListPage;
