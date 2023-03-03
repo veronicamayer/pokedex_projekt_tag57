@@ -1,3 +1,5 @@
+import ListItem from "../../components/listItem/ListItem";
+
 import React, { useEffect, useState } from "react";
 
 import "./ListPage.scss";
@@ -81,28 +83,17 @@ const ListPage = () => {
     };
 
     return (
-        <div className="pokemon-grid">
-            <div className="search-bar">
-                <input
-                    type="text"
-                    placeholder="Search Pokemon"
-                    value={searchTerm}
-                    onChange={handleSearch}
-                />
-            </div>
-            {filteredPokemonList.map((pokemon, i) => (
-                <div key={i} className="pokemon-card">
-                    <h2>{pokemon.id}</h2>
-                    <h1>{pokemon.name}</h1>
-                    <img src={pokemon.image} alt={pokemon.name} />
-                    <p>Types: {pokemon.types}</p>
-                    <p>Abilities: {pokemon.abilities}</p>
-                    <p>Moves: {pokemon.moves}</p>
-                </div>
-            ))}
-            {isLoading && <p>Loading...</p>}
-        </div>
-    );
-};
+
+
+<section className="listPage">
+  <ListItem
+    img_url={pokemon.image}
+    nr={pokemon.id}
+    name={pokemon.name}
+   type1={pokemon.types}
+    >
+</ListItem>
+</section>
+)}
 
 export default ListPage;
