@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 
-import React, { useEffect, useState } from "react";
-
 import Header from "../../components/header/Header.jsx";
 
 import "./ListPage.scss";
@@ -93,10 +91,12 @@ const ListPage = () => {
 
 
     return (
-        <section className="listPage">
-         <div>
+        <>
+            <div>
                 <Header childToParent={childToParent} />
             </div>
+                    <section className="listPage">
+
             {filteredPokemonList.map((pokemon, i) => (
                 <Link to={`/details/${pokemon.name}`}>
                 <ListItem
@@ -108,6 +108,7 @@ const ListPage = () => {
                 </Link>
             ))}
         </section>
+        </>
     );
 };
 export default ListPage;

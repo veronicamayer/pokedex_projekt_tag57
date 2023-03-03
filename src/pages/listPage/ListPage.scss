@@ -2,9 +2,10 @@ html {
     background-color: #d1dadd;
 }
 
+
 .listPage{
 
-    margin-top: 20vh;    /* platz für fixed header */
+    margin-top: 25vh;    /* platz für fixed header */
 
     
     display: flex;
@@ -14,8 +15,10 @@ html {
     row-gap: 1vh ;
     column-gap: 4vw;
 
-    padding: 0 4vw;
 
+    a {
+        text-decoration: none;
+    }
 
     
     .listItem{

@@ -5,14 +5,15 @@ import Pokeball from "../../img/pokeball.png";
 import { useParams } from 'react-router-dom';
 
 const DetailsPage = () => {
-    const { name } = useParams();
+    const params = useParams();
+    console.log(params);
 
     const [pokemon, setPokemon] = useState(null);
 
     useEffect(() => {
         const getPokemonDetails = async () => {
             const response = await fetch(
-                `https://pokeapi.co/api/v2/pokemon/${name}`
+                `https://pokeapi.co/api/v2/pokemon/${params.id}`
             );
             const data = await response.json();
             const dreamWorldImage =
@@ -25,6 +26,7 @@ const DetailsPage = () => {
                     : Pokeball;
 
             setPokemon({
+                key: data.name,
                 id: `#${data.id.toString().padStart(3, "0")}`,
                 name: data.name,
                 image: dreamWorldImage,
@@ -37,7 +39,7 @@ const DetailsPage = () => {
         };
 
         getPokemonDetails();
-    }, [name]);
+    }, [params.id]);
 
     if (!pokemon) {
         return <div>Loading...</div>;
