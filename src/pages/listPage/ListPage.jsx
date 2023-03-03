@@ -1,10 +1,14 @@
 import ListItem from "../../components/listItem/ListItem";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+
+import { Link } from "react-router-dom";
 
 import "./ListPage.scss";
 
 import Pokeball from "../../img/pokeball.png";
+
+import DetailsPage from "../detailsPage/DetailsPage";
 
 const ListPage = () => {
     const [pokemonList, setPokemonList] = useState([]);
@@ -85,12 +89,14 @@ const ListPage = () => {
     return (
         <section className="listPage">
             {filteredPokemonList.map((pokemon, i) => (
+                <Link to={`/details/${pokemon.name}`}>
                 <ListItem
                     key={i}
                     img_url={pokemon.image}
                     nr={pokemon.id}
                     name={pokemon.name}
                 ></ListItem>
+                </Link>
             ))}
         </section>
     );
