@@ -83,17 +83,16 @@ const ListPage = () => {
     };
 
     return (
-
-
-<section className="listPage">
-  <ListItem
-    img_url={pokemon.image}
-    nr={pokemon.id}
-    name={pokemon.name}
-   type1={pokemon.types}
-    >
-</ListItem>
-</section>
-)}
-
+        <section className="listPage">
+            {filteredPokemonList.map((pokemon, i) => (
+                <ListItem
+                    key={i}
+                    img_url={pokemon.image}
+                    nr={pokemon.id}
+                    name={pokemon.name}
+                ></ListItem>
+            ))}
+        </section>
+    );
+};
 export default ListPage;
