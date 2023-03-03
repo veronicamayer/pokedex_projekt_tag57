@@ -1,8 +1,11 @@
+html {
+    background-color: #d1dadd;
+}
+
 .listPage{
 
-    margin-top: 15vh;    /* platz für fixed header */
+    margin-top: 20vh;    /* platz für fixed header */
 
-    background-color: #d1dadd;
     
     display: flex;
     flex-wrap: wrap;
@@ -11,23 +14,10 @@
     row-gap: 1vh ;
     column-gap: 4vw;
 
-     padding: 0 4vw;
+    padding: 0 4vw;
 
 
-    .header{
-        background-color: #d1dadd;
-
-        width: 100vw;
-
-        display: flex;
-        justify-content: center;
-
-        position: fixed;
-        top: 0px;
-        z-index: 2;
-
-    }
-
+    
     .listItem{
 
         width: 44vw;

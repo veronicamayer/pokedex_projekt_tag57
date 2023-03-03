@@ -5,12 +5,11 @@ import Header from "../../components/header/Header.jsx";
 import "./ListPage.scss";
 
 import Pokeball from "../../img/pokeball.png";
-import Header from "../../components/header/Header";
 
 const ListPage = () => {
     const [pokemonList, setPokemonList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [childData, setChildData] = useState('')
+    const [childData, setChildData] = useState("");
 
     const fetchPokemon = async (limit, offset) => {
         try {
@@ -29,10 +28,10 @@ const ListPage = () => {
                         data.sprites.other.dream_world.front_default != null
                             ? data.sprites.other.dream_world.front_default
                             : data.sprites.other.home.front_default != null
-                                ? data.sprites.other.home.front_default
-                                : data.sprites.front_default != null
-                                    ? data.sprites.front_default
-                                    : Pokeball;
+                            ? data.sprites.other.home.front_default
+                            : data.sprites.front_default != null
+                            ? data.sprites.front_default
+                            : Pokeball;
                     return {
                         /* format the id as #00x */
                         id: `#${data.id.toString().padStart(3, "0")}`,
@@ -80,24 +79,18 @@ const ListPage = () => {
     );
 
     const childToParent = (elem) => {
-        setChildData(elem)
+        setChildData(elem);
         console.log(childData);
-    }
+    };
 
     // const handleSearch = (event) => {
     //     setSearchTerm(event.target.value);
     // };
 
     return (
-        <div className="pokemon-grid">
-            <div className="search-bar">
-                <Header childToParent={childToParent}/>
-                {/* <input
-                    type="text"
-                    placeholder="Search Pokemon"
-                    value={searchTerm}
-                    onChange={handleSearch}
-                /> */}
+        <div className="listPage">
+            <div>
+                <Header childToParent={childToParent} />
             </div>
             {filteredPokemonList.map((pokemon, i) => (
                 <ListItem
