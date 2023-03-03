@@ -14,8 +14,8 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path="/" element={<ListPage />} />
-{/*         <Route path="/details/:id" element={<DetailsPage />} />
- */}      </Routes>
+         <Route path="/details/:id" element={<DetailsPage />} />
+       </Routes>
       </BrowserRouter>
     </div>
   );
