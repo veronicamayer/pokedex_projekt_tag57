@@ -3,10 +3,6 @@ import "./ListItem.scss";
 
 // img import zum testen und stylen
 
-import test_pokemon_image from "../../img/test_pokemon_image 2_.png";
-
-console.log(test_pokemon_image);
-
 const ListItem = (props) => {
     return (
         <>

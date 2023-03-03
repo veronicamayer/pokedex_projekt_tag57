@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import "./ListPage.scss";
 
 import Pokeball from "../../img/pokeball.png";
+import Header from "../../components/header/Header";
 
 const ListPage = () => {
     const [pokemonList, setPokemonList] = useState([]);
@@ -28,10 +29,10 @@ const ListPage = () => {
                         data.sprites.other.dream_world.front_default != null
                             ? data.sprites.other.dream_world.front_default
                             : data.sprites.other.home.front_default != null
-                            ? data.sprites.other.home.front_default
-                            : data.sprites.front_default != null
-                            ? data.sprites.front_default
-                            : Pokeball;
+                                ? data.sprites.other.home.front_default
+                                : data.sprites.front_default != null
+                                    ? data.sprites.front_default
+                                    : Pokeball;
                     return {
                         /* format the id as #00x */
                         id: `#${data.id.toString().padStart(3, "0")}`,

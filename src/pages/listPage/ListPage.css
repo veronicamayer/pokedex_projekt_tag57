@@ -1,0 +1,40 @@
+@charset "UTF-8";
+.listPage {
+  margin-top: 15vh; /* platz für fixed header */
+  background-color: #d1dadd;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 1vh;
+  -moz-column-gap: 4vw;
+       column-gap: 4vw;
+  padding: 0 4vw;
+}
+.listPage .header {
+  background-color: #d1dadd;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0px;
+  z-index: 2;
+}
+.listPage .listItem {
+  width: 44vw;
+  margin-top: 7vh; /* Anpassen für Desktop bei MediaQ abstand nach oben bzw. zwischen Figuren*/
+  cursor: pointer;
+}
+.listPage .listItem img {
+  width: 80%;
+}
+.listPage .listItem article p {
+  font-size: clamp(0.8rem, 4vw, 2.1rem);
+  overflow-x: hidden;
+}
+
+@media only screen and (max-width: 355px) {
+  .listItem {
+    width: 90vw;
+    margin-top: 4vh;
+  }
+}/*# sourceMappingURL=ListPage.css.map */
