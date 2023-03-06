@@ -10,9 +10,17 @@ import "./ListPage.scss";
 
 import Pokeball from "../../img/pokeball.png";
 
-/* import DetailsPage from "../detailsPage/DetailsPage";
- */
-const ListPage = () => {
+// import DetailsPage from "../detailsPage/DetailsPage";
+
+import menuIcon from "../../img/menu.png";
+import HeaderImage from '../../img/img1.png';
+import xIcon from '../../img/xVector.png';
+
+import TypeButton from "../../components/typeButton/TypeButton.jsx";
+
+
+
+const ListPage = (props) => {
     const [pokemonList, setPokemonList] = useState([]);
 /*     const [isLoading, setIsLoading] = useState(true);
  */    const [childData, setChildData] = useState("");
@@ -34,10 +42,10 @@ const ListPage = () => {
                         data.sprites.other.dream_world.front_default != null
                             ? data.sprites.other.dream_world.front_default
                             : data.sprites.other.home.front_default != null
-                            ? data.sprites.other.home.front_default
-                            : data.sprites.front_default != null
-                            ? data.sprites.front_default
-                            : Pokeball;
+                                ? data.sprites.other.home.front_default
+                                : data.sprites.front_default != null
+                                    ? data.sprites.front_default
+                                    : Pokeball;
                     return {
                         /* format the id as #00x */
                         id: `#${data.id.toString().padStart(3, "0")}`,
@@ -89,12 +97,53 @@ const ListPage = () => {
         console.log(childData);
     };
 
+
+
+
+     const allTypes = {
+        normal: "#A8A77A",
+        fire: "#EE8130",
+        water: "#6390F0",
+        electric: "#F7D02C",
+        grass: "#7AC74C",
+        ice: "#96D9D6",
+        fighting: "#C22E28",
+        poison: "#A33EA1",
+        ground: "#E2BF65",
+        flying: "#A98FF3",
+        psychic: "#F95587",
+        bug: "#A6B91A",
+        rock: "#B6A136",
+        ghost: "#735797",
+        dragon: "#6F35FC",
+        dark: "#705746",
+        steel: "#B7B7CE",
+        fairy: "#D685AD",
+    }; 
+
+console.log(Object.keys(allTypes));
+
+                const typeButtons = Object.keys(allTypes).map((type) => (
+                   <> 
+                   <TypeButton key={type} label={type} />
+
+                    <input type="checkbox" name={type} id={type} value={type} /> 
+                    </>
+                ));
+
+
+
     return (
         <>
-            <div>
+            <div className="divHeader filterTypesOn">
+                <button onClick={() => {
+                    document.querySelectorAll(".filterTypesOn").forEach(e => e.style.display = "none")
+                    document.querySelectorAll(".filterTypesOff").forEach(e => e.style.display = "flex")
+                }}> <img src={menuIcon} alt="menuIcon" />  </button>
                 <Header childToParent={childToParent} />
             </div>
-            <section className="listPage">
+            <section className="listPage filterTypesOn">
+
                 {filteredPokemonList.map((pokemon, i) => (
                     <Link to={`/details/${pokemon.name}`}>
                         <ListItem
@@ -105,6 +154,30 @@ const ListPage = () => {
                         ></ListItem>
                     </Link>
                 ))}
+            </section>
+            <section className="checkBox filterTypesOff">
+                <article>
+                    <img src={HeaderImage} alt="pokemonIcon" />
+
+                    <button onClick={() => {
+                        document.querySelectorAll(".filterTypesOn").forEach(e => e.style.display = "flex")
+                        document.querySelectorAll(".filterTypesOff").forEach(e => e.style.display = "none")
+                    }}> <img src={xIcon} alt="xIcon" />  </button>
+                </article>
+
+                <article>
+                    <h1>Type</h1>
+
+
+                      <div>{typeButtons}</div> 
+ 
+               
+        
+
+
+
+
+                </article>
             </section>
         </>
     );
