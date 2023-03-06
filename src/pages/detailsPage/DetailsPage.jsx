@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 
 import Pokeball from "../../img/pokeball.png";
 
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
-const DetailsPage = () => {
+import TypeButton from "../../components/typeButton/TypeButton";
+
+const DetailsPage = (props) => {
     const params = useParams();
     console.log(params);
 
@@ -34,7 +36,13 @@ const DetailsPage = () => {
                     .map((ability) => ability.ability.name)
                     .join(", "),
                 moves: data.moves.map((move) => move.move.name).join(", "),
-                types: data.types.map((type) => type.type.name).join(", "),
+                types: data.types.map((type, index) => (
+                    <TypeButton
+                        key={index}
+                        label={type.type.name}
+                        allTypes={props.allTypes}
+                    />
+                )),
             });
         };
 
