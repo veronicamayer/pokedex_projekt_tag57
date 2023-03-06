@@ -127,7 +127,7 @@ console.log(Object.keys(allTypes));
                    <> 
                    <TypeButton key={type} label={type} />
 
-                    <input type="checkbox" name={type} id={type} /> 
+                    <input type="checkbox" name={type} id={type} value={type} /> 
                     </>
                 ));
 
@@ -172,8 +172,7 @@ console.log(Object.keys(allTypes));
                       <div>{typeButtons}</div> 
  
                
-                    <input type="checkbox" name="" id="" />
-                    <input type="checkbox" name="" id="" />
+        
 
 
 
