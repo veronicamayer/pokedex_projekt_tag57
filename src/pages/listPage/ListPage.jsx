@@ -10,6 +10,7 @@ import "./ListPage.scss";
 
 import Pokeball from "../../img/pokeball.png";
 
+
 import BurgerMenu from "../../components/burgerMenu/BurgerMenu";
 
 // import DetailsPage from "../detailsPage/DetailsPage";
@@ -28,6 +29,7 @@ const ListPage = (props) => {
     /*     const [isLoading, setIsLoading] = useState(true); */
     const [childData, setChildData] = useState("");
     const [selectedTypes, setSelectedTypes] = useState([]);
+     const [dayNightChild, setDayNightChild] = useState('day')
 
     const fetchPokemon = async (limit, offset) => {
         try {
@@ -46,10 +48,10 @@ const ListPage = (props) => {
                         data.sprites.other.dream_world.front_default != null
                             ? data.sprites.other.dream_world.front_default
                             : data.sprites.other.home.front_default != null
-                            ? data.sprites.other.home.front_default
-                            : data.sprites.front_default != null
-                            ? data.sprites.front_default
-                            : Pokeball;
+                                ? data.sprites.other.home.front_default
+                                : data.sprites.front_default != null
+                                    ? data.sprites.front_default
+                                    : Pokeball;
                     return {
                         /* format the id as #00x */
                         id: `#${data.id.toString().padStart(3, "0")}`,
@@ -102,7 +104,12 @@ const ListPage = (props) => {
                     .some((t) => selectedTypes.includes(t)))
     );
 
-    console.log(filteredPokemonList);
+
+    const sendData = (state) => {
+        console.log(state);
+        setDayNightChild(state)
+    }
+
 
     const childToParent = (elem) => {
         setChildData(elem);
@@ -156,7 +163,9 @@ const ListPage = (props) => {
         <>
             <div className="divHeader filterTypesOn">
                 
-            <Header childToParent={childToParent} buttonComponent={BurgerMenu} />
+            <Header childToParent={childToParent} buttonComponent={BurgerMenu} dayNight={props.dayNight}
+                    setDayNight={props.setDayNight}
+                    sendData={sendData}  />
         
             </div>
             <section className="listPage filterTypesOn">
@@ -167,6 +176,8 @@ const ListPage = (props) => {
                             img_url={pokemon.image}
                             nr={pokemon.id}
                             name={pokemon.name}
+                            dayNight={props.dayNight}
+                        setDayNight={props.setDayNight}
                         ></ListItem>
                     </Link>
                 ))}

@@ -2,9 +2,12 @@
 import "./ListItem.scss";
 
 const ListItem = (props) => {
+
+    console.log(props);
     return (
         <>
-            <section className="listItem">
+            <section 
+            className={`listItem ${props.dayNight ? 'lightItem' : 'darkItem' }`}>
                 <article>
                     <img
                         src={props.img_url}

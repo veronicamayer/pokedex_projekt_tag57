@@ -1,12 +1,9 @@
 .header {
-    background-color: #d1dadd;
     width: 100%;
     position: fixed;
     top: 0px;
     left: 0px;
     z-index: 2;
-    text-align: center;
-    padding: 2vh 0;
     > div {
         display: flex;
         justify-content: center;
@@ -20,4 +17,14 @@
             }
         }
     }
+}
+
+.light {
+    background-color: #d1dadd;
+    color: #0B0B45;
+}
+
+.dark {
+    background-color: #0B0B45;
+    color: #d1dadd;
 }
