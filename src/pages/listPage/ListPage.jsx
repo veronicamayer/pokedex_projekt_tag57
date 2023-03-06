@@ -10,12 +10,12 @@ import "./ListPage.scss";
 
 import Pokeball from "../../img/pokeball.png";
 
-import DetailsPage from "../detailsPage/DetailsPage";
-
+/* import DetailsPage from "../detailsPage/DetailsPage";
+ */
 const ListPage = () => {
     const [pokemonList, setPokemonList] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [childData, setChildData] = useState("");
+/*     const [isLoading, setIsLoading] = useState(true);
+ */    const [childData, setChildData] = useState("");
 
     const fetchPokemon = async (limit, offset) => {
         try {
@@ -89,25 +89,23 @@ const ListPage = () => {
         console.log(childData);
     };
 
-
     return (
         <>
             <div>
                 <Header childToParent={childToParent} />
             </div>
-                    <section className="listPage">
-
-            {filteredPokemonList.map((pokemon, i) => (
-                <Link to={`/details/${pokemon.name}`}>
-                <ListItem
-                    key={i}
-                    img_url={pokemon.image}
-                    nr={pokemon.id}
-                    name={pokemon.name}
-                ></ListItem>
-                </Link>
-            ))}
-        </section>
+            <section className="listPage">
+                {filteredPokemonList.map((pokemon, i) => (
+                    <Link to={`/details/${pokemon.name}`}>
+                        <ListItem
+                            key={i}
+                            img_url={pokemon.image}
+                            nr={pokemon.id}
+                            name={pokemon.name}
+                        ></ListItem>
+                    </Link>
+                ))}
+            </section>
         </>
     );
 };
