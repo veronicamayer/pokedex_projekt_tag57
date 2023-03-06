@@ -57,8 +57,8 @@ const ListPage = () => {
             );
 
             setPokemonList((prevList) => [...prevList, ...pokemonData]);
-            setIsLoading(false);
-        } catch (error) {
+/*             setIsLoading(false);
+ */        } catch (error) {
             console.log(error);
         }
     };
