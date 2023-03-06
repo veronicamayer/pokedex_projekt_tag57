@@ -1,55 +1,17 @@
-html {
+
+// @media only screen and (max-width: 355px) {
+//     .listItem {
+//         width: 90vw;
+//         margin-top: 4vh;
+//     }
+// }
+
+.light {
     background-color: #d1dadd;
+    color: #0B0B45;
 }
 
-
-.listPage{
-
-    margin-top: 25vh;    /* platz für fixed header */
-
-    
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    row-gap: 1vh ;
-    column-gap: 4vw;
-
-
-    a {
-        text-decoration: none;
-    }
-
-    
-    .listItem{
-
-        width: 44vw;
-
-        margin-top: 7vh;   /* Anpassen für Desktop bei MediaQ abstand nach oben bzw. zwischen Figuren*/
-        
-        cursor: pointer;
-
-
-    img{
-        width: 80%;
-    }
-
-    article{
-    p{
-        font-size: clamp(0.8rem, 4vw, 2.1rem);
-        overflow-x: hidden;
-
-    }}
-
-    }
-
-}
-
-
-@media only screen and (max-width: 355px) {
-    .listItem{
-        width: 90vw;
-        margin-top: 4vh;
-    }
-    
+.dark {
+    background-color: #0B0B45;
+    color: #d1dadd;
 }

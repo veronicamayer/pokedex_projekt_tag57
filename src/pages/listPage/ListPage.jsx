@@ -12,10 +12,11 @@ import Pokeball from "../../img/pokeball.png";
 
 /* import DetailsPage from "../detailsPage/DetailsPage";
  */
-const ListPage = () => {
+const ListPage = (props) => {
     const [pokemonList, setPokemonList] = useState([]);
 /*     const [isLoading, setIsLoading] = useState(true);
  */    const [childData, setChildData] = useState("");
+        const [dayNightChild, setDayNightChild] = useState('day')
 
     const fetchPokemon = async (limit, offset) => {
         try {
@@ -34,10 +35,10 @@ const ListPage = () => {
                         data.sprites.other.dream_world.front_default != null
                             ? data.sprites.other.dream_world.front_default
                             : data.sprites.other.home.front_default != null
-                            ? data.sprites.other.home.front_default
-                            : data.sprites.front_default != null
-                            ? data.sprites.front_default
-                            : Pokeball;
+                                ? data.sprites.other.home.front_default
+                                : data.sprites.front_default != null
+                                    ? data.sprites.front_default
+                                    : Pokeball;
                     return {
                         /* format the id as #00x */
                         id: `#${data.id.toString().padStart(3, "0")}`,
@@ -84,6 +85,11 @@ const ListPage = () => {
         pokemon.name.toLowerCase().includes(childData.toLowerCase())
     );
 
+    const sendData = (state) => {
+        console.log(state);
+        setDayNightChild(state)
+    }
+
     const childToParent = (elem) => {
         setChildData(elem);
         console.log(childData);
@@ -92,20 +98,25 @@ const ListPage = () => {
     return (
         <>
             <div>
-                <Header childToParent={childToParent} />
+                <Header
+                    dayNight={props.dayNight}
+                    setDayNight={props.setDayNight}
+                    childToParent={childToParent}
+                    sendData={sendData} />
             </div>
-            <section className="listPage">
-                {filteredPokemonList.map((pokemon, i) => (
-                    <Link to={`/details/${pokemon.name}`}>
-                        <ListItem
-                            key={i}
-                            img_url={pokemon.image}
-                            nr={pokemon.id}
-                            name={pokemon.name}
-                        ></ListItem>
-                    </Link>
-                ))}
-            </section>
+
+            {filteredPokemonList.map((pokemon, i) => (
+                <Link to={`/details/${pokemon.name}`}>
+                    <ListItem
+                        dayNight={props.dayNight}
+                        setDayNight={props.setDayNight}
+                        key={i}
+                        img_url={pokemon.image}
+                        nr={pokemon.id}
+                        name={pokemon.name}
+                    ></ListItem>
+                </Link>
+            ))}
         </>
     );
 };
