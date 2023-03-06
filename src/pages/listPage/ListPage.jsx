@@ -10,18 +10,18 @@ import "./ListPage.scss";
 
 import Pokeball from "../../img/pokeball.png";
 
-import DetailsPage from "../detailsPage/DetailsPage";
+/* import DetailsPage from "../detailsPage/DetailsPage";
 
 import menuIcon from "../../img/menu.png";
 import HeaderImage from '../../img/img1.png';
 import xIcon from '../../img/xVector.png';
 
 
-
+ */
 const ListPage = () => {
     const [pokemonList, setPokemonList] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [childData, setChildData] = useState("");
+/*     const [isLoading, setIsLoading] = useState(true);
+ */    const [childData, setChildData] = useState("");
 
     const fetchPokemon = async (limit, offset) => {
         try {
@@ -63,8 +63,8 @@ const ListPage = () => {
             );
 
             setPokemonList((prevList) => [...prevList, ...pokemonData]);
-            setIsLoading(false);
-        } catch (error) {
+/*             setIsLoading(false);
+ */        } catch (error) {
             console.log(error);
         }
     };
@@ -94,7 +94,6 @@ const ListPage = () => {
         setChildData(elem);
         console.log(childData);
     };
-
 
     return (
         <>
