@@ -10,17 +10,14 @@ import "./ListPage.scss";
 
 import Pokeball from "../../img/pokeball.png";
 
-
 import BurgerMenu from "../../components/burgerMenu/BurgerMenu";
 
 // import DetailsPage from "../detailsPage/DetailsPage";
 
-
 import menuIcon from "../../img/menu.png";
-import HeaderImage from '../../img/img1.png';
-import xIcon from '../../img/xVector.png';
-import type from '../../img/type.png';
-
+import HeaderImage from "../../img/img1.png";
+import xIcon from "../../img/xVector.png";
+import type from "../../img/type.png";
 
 import TypeButton from "../../components/typeButton/TypeButton.jsx";
 
@@ -29,7 +26,7 @@ const ListPage = (props) => {
     /*     const [isLoading, setIsLoading] = useState(true); */
     const [childData, setChildData] = useState("");
     const [selectedTypes, setSelectedTypes] = useState([]);
-     const [dayNightChild, setDayNightChild] = useState('day')
+    const [dayNightChild, setDayNightChild] = useState("day");
 
     const fetchPokemon = async (limit, offset) => {
         try {
@@ -48,10 +45,10 @@ const ListPage = (props) => {
                         data.sprites.other.dream_world.front_default != null
                             ? data.sprites.other.dream_world.front_default
                             : data.sprites.other.home.front_default != null
-                                ? data.sprites.other.home.front_default
-                                : data.sprites.front_default != null
-                                    ? data.sprites.front_default
-                                    : Pokeball;
+                            ? data.sprites.other.home.front_default
+                            : data.sprites.front_default != null
+                            ? data.sprites.front_default
+                            : Pokeball;
                     return {
                         /* format the id as #00x */
                         id: `#${data.id.toString().padStart(3, "0")}`,
@@ -104,12 +101,10 @@ const ListPage = (props) => {
                     .some((t) => selectedTypes.includes(t)))
     );
 
-
     const sendData = (state) => {
         console.log(state);
-        setDayNightChild(state)
-    }
-
+        setDayNightChild(state);
+    };
 
     const childToParent = (elem) => {
         setChildData(elem);
@@ -162,11 +157,13 @@ const ListPage = (props) => {
     return (
         <>
             <div className="divHeader filterTypesOn">
-                
-            <Header childToParent={childToParent} buttonComponent={BurgerMenu} dayNight={props.dayNight}
+                <Header
+                    childToParent={childToParent}
+                    buttonComponent={BurgerMenu}
+                    dayNight={props.dayNight}
                     setDayNight={props.setDayNight}
-                    sendData={sendData}  />
-        
+                    sendData={sendData}
+                />
             </div>
             <section className="listPage filterTypesOn">
                 {filteredPokemonList.map((pokemon, i) => (
@@ -177,7 +174,7 @@ const ListPage = (props) => {
                             nr={pokemon.id}
                             name={pokemon.name}
                             dayNight={props.dayNight}
-                        setDayNight={props.setDayNight}
+                            setDayNight={props.setDayNight}
                         ></ListItem>
                     </Link>
                 ))}
@@ -220,7 +217,7 @@ const ListPage = (props) => {
                                 .forEach((e) => (e.style.display = "none"));
                         }}
                     >
-                    Search
+                        Search
                     </button>
                 </article>
             </section>

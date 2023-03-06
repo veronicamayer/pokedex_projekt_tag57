@@ -29,8 +29,9 @@ export default function Header({childToParent, buttonComponent, sendData, setDay
                     onClick={() => {
                         setDayNight(prev => !prev)}}
                        >
+                         <img src={MoonIcon} alt="" />
                 </button>
-                <img src={MoonIcon} alt="" />
+               
                 <Button />
             </div>
         </nav>
