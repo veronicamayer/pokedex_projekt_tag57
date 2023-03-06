@@ -1,34 +1,38 @@
 
+
 import HeaderImage from '../../img/img1.png'
 import MoonIcon from '../../img/moon-stars.svg'
 import './Header.scss'
 
-export default function Header({childToParent, sendData, setDayNight, dayNight}) {
+export default function Header({childToParent, buttonComponent, sendData, setDayNight, dayNight}) {
     
-    
+    const Button = buttonComponent;
 
     return (
         <nav className={`header ${dayNight ? 'light' : 'dark'}`}>
+
             <img src={HeaderImage} alt="" />
             <div>
                 <input
                     type="text"
                     name="searchBar"
                     id="searchBar"
-                    onChange={e => {
-                        childToParent(e.target.value)
+                    onChange={(e) => {
+                        childToParent(e.target.value);
                     }}
-                    placeholder='Search Names' />
+                    
+                    placeholder='Search Names' 
+                  />
 
                 <button
                     className='darkLight'
                     onClick={() => {
-                        setDayNight(prev => !prev)}}>
-                    <img src={MoonIcon} alt="" />
+                        setDayNight(prev => !prev)}}
+                       >
                 </button>
+                <img src={MoonIcon} alt="" />
+                <Button />
             </div>
         </nav>
     );
 }
-
-// export default Header;

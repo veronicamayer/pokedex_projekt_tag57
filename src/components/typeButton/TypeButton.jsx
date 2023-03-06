@@ -27,7 +27,7 @@ const TypeButton = ({ label }) => {
     return (
         <label 
             className="typeButton" 
-            style={{ backgroundColor: color }}>
+            style={{ backgroundColor: color }} for={label}>
                 {label}
         </label>
     );

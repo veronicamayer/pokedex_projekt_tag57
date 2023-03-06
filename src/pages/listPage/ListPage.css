@@ -1,27 +1,25 @@
 @charset "UTF-8";
-.listPage {
-  margin-top: 15vh; /* platz für fixed header */
+html {
   background-color: #d1dadd;
+}
+
+.listPage {
+  margin-top: 25vh;
+  /* platz für fixed header */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   row-gap: 1vh;
   -moz-column-gap: 4vw;
        column-gap: 4vw;
-  padding: 0 4vw;
 }
-.listPage .header {
-  background-color: #d1dadd;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  top: 0px;
-  z-index: 2;
+.listPage a {
+  text-decoration: none;
 }
 .listPage .listItem {
   width: 44vw;
-  margin-top: 7vh; /* Anpassen für Desktop bei MediaQ abstand nach oben bzw. zwischen Figuren*/
+  margin-top: 7vh;
+  /* Anpassen für Desktop bei MediaQ abstand nach oben bzw. zwischen Figuren*/
   cursor: pointer;
 }
 .listPage .listItem img {
@@ -37,4 +35,78 @@
     width: 90vw;
     margin-top: 4vh;
   }
+}
+.divHeader {
+  padding-top: 13.5vh;
+  padding-left: 12vw;
+}
+.divHeader > button {
+  background-color: #d1dadd;
+  position: absolute;
+  position: fixed;
+  z-index: 3;
+  border: none;
+}
+.divHeader > button > img {
+  width: 24px;
+  height: 20px;
+}
+
+.filterTypesOn {
+  display: flex;
+}
+
+.filterTypesOff {
+  display: none;
+}
+
+.checkBox {
+  display: flex;
+  flex-direction: column;
+}
+.checkBox > article:nth-of-type(1) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 2vh 3vw;
+}
+.checkBox > article:nth-of-type(1) > img {
+  width: 118px;
+  height: 40px;
+}
+.checkBox > article:nth-of-type(1) button {
+  border: none;
+  background-color: #d1dadd;
+}
+.checkBox > article:nth-of-type(1) button img {
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
+.checkBox article:nth-of-type(2) {
+  text-align: center;
+}
+.checkBox article:nth-of-type(2) img {
+  width: 90px;
+}
+.checkBox article:nth-of-type(3) div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 2vh;
+}
+.checkBox article:nth-of-type(3) div label {
+  cursor: pointer;
+  height: 35px;
+  width: 120px;
+  margin-top: 1.2vh;
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 900;
+  padding-top: 1.3vh;
+}
+.checkBox article:nth-of-type(3) div input {
+  visibility: hidden;
+  width: 0px;
 }/*# sourceMappingURL=ListPage.css.map */

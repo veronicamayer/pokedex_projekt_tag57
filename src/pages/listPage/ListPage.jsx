@@ -10,13 +10,26 @@ import "./ListPage.scss";
 
 import Pokeball from "../../img/pokeball.png";
 
-/* import DetailsPage from "../detailsPage/DetailsPage";
- */
+
+import BurgerMenu from "../../components/burgerMenu/BurgerMenu";
+
+// import DetailsPage from "../detailsPage/DetailsPage";
+
+
+import menuIcon from "../../img/menu.png";
+import HeaderImage from '../../img/img1.png';
+import xIcon from '../../img/xVector.png';
+import type from '../../img/type.png';
+
+
+import TypeButton from "../../components/typeButton/TypeButton.jsx";
+
 const ListPage = (props) => {
     const [pokemonList, setPokemonList] = useState([]);
-/*     const [isLoading, setIsLoading] = useState(true);
- */    const [childData, setChildData] = useState("");
-        const [dayNightChild, setDayNightChild] = useState('day')
+    /*     const [isLoading, setIsLoading] = useState(true); */
+    const [childData, setChildData] = useState("");
+    const [selectedTypes, setSelectedTypes] = useState([]);
+     const [dayNightChild, setDayNightChild] = useState('day')
 
     const fetchPokemon = async (limit, offset) => {
         try {
@@ -58,8 +71,9 @@ const ListPage = (props) => {
             );
 
             setPokemonList((prevList) => [...prevList, ...pokemonData]);
-/*             setIsLoading(false);
- */        } catch (error) {
+            /*             setIsLoading(false);
+             */
+        } catch (error) {
             console.log(error);
         }
     };
@@ -81,42 +95,135 @@ const ListPage = (props) => {
     // }, [pokemonList]);
 
     /* search */
-    const filteredPokemonList = pokemonList.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(childData.toLowerCase())
+    const filteredPokemonList = pokemonList.filter(
+        (pokemon) =>
+            pokemon.name.toLowerCase().includes(childData.toLowerCase()) &&
+            (selectedTypes.length === 0 || // include all items if no types are selected
+                pokemon.types
+                    .split(", ")
+                    .some((t) => selectedTypes.includes(t)))
     );
+
 
     const sendData = (state) => {
         console.log(state);
         setDayNightChild(state)
     }
 
+
     const childToParent = (elem) => {
         setChildData(elem);
         console.log(childData);
     };
 
+    const allTypes = {
+        normal: "#A8A77A",
+        fire: "#EE8130",
+        water: "#6390F0",
+        electric: "#F7D02C",
+        grass: "#7AC74C",
+        ice: "#96D9D6",
+        fighting: "#C22E28",
+        poison: "#A33EA1",
+        ground: "#E2BF65",
+        flying: "#A98FF3",
+        psychic: "#F95587",
+        bug: "#A6B91A",
+        rock: "#B6A136",
+        ghost: "#735797",
+        dragon: "#6F35FC",
+        dark: "#705746",
+        steel: "#B7B7CE",
+        fairy: "#D685AD",
+    };
+
+    const typeButtons = Object.keys(allTypes).map((type) => (
+        <>
+            <TypeButton key={type} label={type} />
+            <input
+                type="checkbox"
+                name={type}
+                id={type}
+                value={type}
+                checked={selectedTypes.includes(type)}
+                onChange={(e) => {
+                    const isChecked = e.target.checked;
+                    setSelectedTypes(
+                        (prevTypes) =>
+                            isChecked
+                                ? [...prevTypes, type] // add the type to the array if it's checked
+                                : prevTypes.filter((t) => t !== type) // remove the type from the array if it's unchecked
+                    );
+                }}
+            />
+        </>
+    ));
+
     return (
         <>
-            <div>
-                <Header
-                    dayNight={props.dayNight}
+            <div className="divHeader filterTypesOn">
+                
+            <Header childToParent={childToParent} buttonComponent={BurgerMenu} dayNight={props.dayNight}
                     setDayNight={props.setDayNight}
-                    childToParent={childToParent}
-                    sendData={sendData} />
+                    sendData={sendData}  />
+        
             </div>
-
-            {filteredPokemonList.map((pokemon, i) => (
-                <Link to={`/details/${pokemon.name}`}>
-                    <ListItem
-                        dayNight={props.dayNight}
+            <section className="listPage filterTypesOn">
+                {filteredPokemonList.map((pokemon, i) => (
+                    <Link to={`/details/${pokemon.name}`}>
+                        <ListItem
+                            key={i}
+                            img_url={pokemon.image}
+                            nr={pokemon.id}
+                            name={pokemon.name}
+                            dayNight={props.dayNight}
                         setDayNight={props.setDayNight}
-                        key={i}
-                        img_url={pokemon.image}
-                        nr={pokemon.id}
-                        name={pokemon.name}
-                    ></ListItem>
-                </Link>
-            ))}
+                        ></ListItem>
+                    </Link>
+                ))}
+            </section>
+
+            <section className="checkBox filterTypesOff">
+                <article>
+                    <img src={HeaderImage} alt="pokemonIcon" />
+
+                    <button
+                        onClick={() => {
+                            document
+                                .querySelectorAll(".filterTypesOn")
+                                .forEach((e) => (e.style.display = "flex"));
+                            document
+                                .querySelectorAll(".filterTypesOff")
+                                .forEach((e) => (e.style.display = "none"));
+                        }}
+                    >
+                        {" "}
+                        <img src={xIcon} alt="xIcon" />{" "}
+                    </button>
+                </article>
+
+                <article>
+                    <img src={type} alt="Type" />
+                </article>
+
+                <article>
+                    <div>{typeButtons}</div>
+
+                    <button
+                        className="searchButton"
+                        onClick={() => {
+                            document
+                                .querySelectorAll(".filterTypesOn")
+                                .forEach((e) => (e.style.display = "flex"));
+                            document
+                                .querySelectorAll(".filterTypesOff")
+                                .forEach((e) => (e.style.display = "none"));
+                        }}
+                    >
+                    Search
+                    </button>
+                </article>
+            </section>
         </>
     );
 };
