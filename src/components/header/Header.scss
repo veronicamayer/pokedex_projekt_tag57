@@ -1,0 +1,23 @@
+.header {
+    background-color: #d1dadd;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    text-align: center;
+    padding: 2vh 0;
+    > div {
+        display: flex;
+        justify-content: center;
+        gap: 2vw;
+        padding: 2vh 0;
+
+        > button {
+            border: none;
+            :hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
