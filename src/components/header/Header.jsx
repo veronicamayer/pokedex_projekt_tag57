@@ -1,29 +1,28 @@
-import HeaderImage from '../../img/img1.png'
-import MoonIcon from '../../img/moon-stars.svg'
-import './Header.scss'
+import HeaderImage from "../../img/img1.png";
+import MoonIcon from "../../img/moon-stars.svg";
+import "./Header.scss";
 
-export default function Header({childToParent}) {
+export default function Header({ childToParent, buttonComponent }) {
+    const Button = buttonComponent;
 
     return (
-        <nav className='header'>
+        <nav className="header">
             <img src={HeaderImage} alt="" />
             <div>
                 <input
                     type="text"
                     name="searchBar"
                     id="searchBar"
-                    onChange={e => {
-                        childToParent(e.target.value)
+                    onChange={(e) => {
+                        childToParent(e.target.value);
                     }}
-                    placeholder='Search Names' />
-
-                <button
-                    className='darkLight'>
+                    placeholder="Search Names"
+                />
+                <button className="darkLight">
                     <img src={MoonIcon} alt="" />
                 </button>
+                <Button />
             </div>
         </nav>
     );
 }
-
-// export default Header;
