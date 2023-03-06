@@ -15,6 +15,8 @@ import Pokeball from "../../img/pokeball.png";
 import menuIcon from "../../img/menu.png";
 import HeaderImage from '../../img/img1.png';
 import xIcon from '../../img/xVector.png';
+import type from '../../img/type.png';
+
 
 import TypeButton from "../../components/typeButton/TypeButton.jsx";
 
@@ -100,7 +102,7 @@ const ListPage = (props) => {
 
 
 
-     const allTypes = {
+    const allTypes = {
         normal: "#A8A77A",
         fire: "#EE8130",
         water: "#6390F0",
@@ -119,17 +121,17 @@ const ListPage = (props) => {
         dark: "#705746",
         steel: "#B7B7CE",
         fairy: "#D685AD",
-    }; 
+    };
 
-console.log(Object.keys(allTypes));
+    console.log(Object.keys(allTypes));
 
-                const typeButtons = Object.keys(allTypes).map((type) => (
-                   <> 
-                   <TypeButton key={type} label={type} />
+    const typeButtons = Object.keys(allTypes).map((type) => (
+        <>
+            <TypeButton key={type} label={type} />
 
-                    <input type="checkbox" name={type} id={type} value={type} /> 
-                    </>
-                ));
+            <input type="checkbox" name={type} id={type} value={type} />
+        </>
+    ));
 
 
 
@@ -155,6 +157,7 @@ console.log(Object.keys(allTypes));
                     </Link>
                 ))}
             </section>
+
             <section className="checkBox filterTypesOff">
                 <article>
                     <img src={HeaderImage} alt="pokemonIcon" />
@@ -166,13 +169,16 @@ console.log(Object.keys(allTypes));
                 </article>
 
                 <article>
-                    <h1>Type</h1>
+                    <img src={type} alt="Type" />
+                </article>
+
+                <article>
 
 
-                      <div>{typeButtons}</div> 
- 
-               
-        
+                    <div>{typeButtons}</div>
+
+
+
 
 
 
