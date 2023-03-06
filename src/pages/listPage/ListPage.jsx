@@ -40,10 +40,10 @@ const ListPage = () => {
                         data.sprites.other.dream_world.front_default != null
                             ? data.sprites.other.dream_world.front_default
                             : data.sprites.other.home.front_default != null
-                            ? data.sprites.other.home.front_default
-                            : data.sprites.front_default != null
-                            ? data.sprites.front_default
-                            : Pokeball;
+                                ? data.sprites.other.home.front_default
+                                : data.sprites.front_default != null
+                                    ? data.sprites.front_default
+                                    : Pokeball;
                     return {
                         /* format the id as #00x */
                         id: `#${data.id.toString().padStart(3, "0")}`,
@@ -99,37 +99,42 @@ const ListPage = () => {
     return (
         <>
             <div className="divHeader filterTypesOn">
-                <button onClick={ () => {
-                     document.querySelectorAll(".filterTypesOn").forEach(e => e.style.display = "none")
-                     document.querySelectorAll(".filterTypesOff").forEach(e => e.style.display = "flex")
-                     } }> <img src={menuIcon} alt="menuIcon" />  </button>
+                <button onClick={() => {
+                    document.querySelectorAll(".filterTypesOn").forEach(e => e.style.display = "none")
+                    document.querySelectorAll(".filterTypesOff").forEach(e => e.style.display = "flex")
+                }}> <img src={menuIcon} alt="menuIcon" />  </button>
                 <Header childToParent={childToParent} />
             </div>
-                    <section className="listPage filterTypesOn">
+            <section className="listPage filterTypesOn">
 
-            {filteredPokemonList.map((pokemon, i) => (
-                <Link to={`/details/${pokemon.name}`}>
-                <ListItem 
-                    key={i}
-                    img_url={pokemon.image}
-                    nr={pokemon.id}
-                    name={pokemon.name}
-                ></ListItem>
-                </Link>
-            ))}
-        </section>
-        <section className="filterTypesOff">
-            <h1>Type</h1>
-            <article> 
-                <img src={HeaderImage} alt="pokemonIcon" />
-                
-                <button onClick={ () => {
-                     document.querySelectorAll(".filterTypesOn").forEach(e => e.style.display = "flex")
-                     document.querySelectorAll(".filterTypesOff").forEach(e => e.style.display = "none")
-                     } }> <img src={xIcon} alt="xIcon" />  </button>
-            </article>
+                {filteredPokemonList.map((pokemon, i) => (
+                    <Link to={`/details/${pokemon.name}`}>
+                        <ListItem
+                            key={i}
+                            img_url={pokemon.image}
+                            nr={pokemon.id}
+                            name={pokemon.name}
+                        ></ListItem>
+                    </Link>
+                ))}
+            </section>
+            <section className="filterTypesOff">
+                <article>
+                    <img src={HeaderImage} alt="pokemonIcon" />
 
-        </section>
+                    <button onClick={() => {
+                        document.querySelectorAll(".filterTypesOn").forEach(e => e.style.display = "flex")
+                        document.querySelectorAll(".filterTypesOff").forEach(e => e.style.display = "none")
+                    }}> <img src={xIcon} alt="xIcon" />  </button>
+                </article>
+
+                <article>
+                    <h1>Type</h1>
+
+                    
+
+                </article>
+            </section>
         </>
     );
 };
