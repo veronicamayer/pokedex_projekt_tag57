@@ -2,10 +2,18 @@ html {
     background-color: #d1dadd;
 }
 
+.searchButton {
+    background-color: rgb(84, 84, 181);
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    margin: 3vh 3vw;
+}
 
 .listPage {
 
-    margin-top: 7vh;
+    margin-top: 12vh;
     /* platz für fixed header */
 
 
@@ -158,8 +166,6 @@ html {
             }
 
             input {
-                visibility: hidden;
-                width: 0px;
 
 
 

@@ -199,6 +199,7 @@ const ListPage = (props) => {
                     <div>{typeButtons}</div>
 
                     <button
+                        className="searchButton"
                         onClick={() => {
                             document
                                 .querySelectorAll(".filterTypesOn")
