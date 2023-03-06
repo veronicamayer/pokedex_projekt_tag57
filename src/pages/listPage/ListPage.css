@@ -4,7 +4,8 @@ html {
 }
 
 .listPage {
-  margin-top: 25vh; /* platz für fixed header */
+  margin-top: 25vh;
+  /* platz für fixed header */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -17,7 +18,8 @@ html {
 }
 .listPage .listItem {
   width: 44vw;
-  margin-top: 7vh; /* Anpassen für Desktop bei MediaQ abstand nach oben bzw. zwischen Figuren*/
+  margin-top: 7vh;
+  /* Anpassen für Desktop bei MediaQ abstand nach oben bzw. zwischen Figuren*/
   cursor: pointer;
 }
 .listPage .listItem img {
@@ -55,4 +57,8 @@ html {
 
 .filterTypesOff {
   display: none;
+}
+
+.checkBox input {
+  visibility: hidden;
 }/*# sourceMappingURL=ListPage.css.map */

@@ -10,15 +10,17 @@ import "./ListPage.scss";
 
 import Pokeball from "../../img/pokeball.png";
 
-/* import DetailsPage from "../detailsPage/DetailsPage";
+// import DetailsPage from "../detailsPage/DetailsPage";
 
 import menuIcon from "../../img/menu.png";
 import HeaderImage from '../../img/img1.png';
 import xIcon from '../../img/xVector.png';
 
+import TypeButton from "../../components/typeButton/TypeButton.jsx";
 
- */
-const ListPage = () => {
+
+
+const ListPage = (props) => {
     const [pokemonList, setPokemonList] = useState([]);
 /*     const [isLoading, setIsLoading] = useState(true);
  */    const [childData, setChildData] = useState("");
@@ -95,6 +97,42 @@ const ListPage = () => {
         console.log(childData);
     };
 
+
+
+
+     const allTypes = {
+        normal: "#A8A77A",
+        fire: "#EE8130",
+        water: "#6390F0",
+        electric: "#F7D02C",
+        grass: "#7AC74C",
+        ice: "#96D9D6",
+        fighting: "#C22E28",
+        poison: "#A33EA1",
+        ground: "#E2BF65",
+        flying: "#A98FF3",
+        psychic: "#F95587",
+        bug: "#A6B91A",
+        rock: "#B6A136",
+        ghost: "#735797",
+        dragon: "#6F35FC",
+        dark: "#705746",
+        steel: "#B7B7CE",
+        fairy: "#D685AD",
+    }; 
+
+console.log(Object.keys(allTypes));
+
+                const typeButtons = Object.keys(allTypes).map((type) => (
+                   <> 
+                   <TypeButton key={type} label={type} />
+
+                    <input type="checkbox" name={type} id={type} /> 
+                    </>
+                ));
+
+
+
     return (
         <>
             <div className="divHeader filterTypesOn">
@@ -117,7 +155,7 @@ const ListPage = () => {
                     </Link>
                 ))}
             </section>
-            <section className="filterTypesOff">
+            <section className="checkBox filterTypesOff">
                 <article>
                     <img src={HeaderImage} alt="pokemonIcon" />
 
@@ -130,7 +168,15 @@ const ListPage = () => {
                 <article>
                     <h1>Type</h1>
 
-                    
+
+                      <div>{typeButtons}</div> 
+ 
+               
+                    <input type="checkbox" name="" id="" />
+                    <input type="checkbox" name="" id="" />
+
+
+
 
                 </article>
             </section>
