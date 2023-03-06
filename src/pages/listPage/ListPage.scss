@@ -58,19 +58,22 @@ html {
 }
 
 .divHeader {
-    background-color: red;
-    padding-top: 18vh;
-    padding-left: 21vw;
+    padding-top: 13.5vh;
+    padding-left: 12vw;
 
     >button {
-        background-color: green;
-        position: relative;
+        background-color: #d1dadd;
+        position: absolute;
+        position: fixed;
 
         z-index: 3;
 
+        border: none;
+
+
         >img {
-            width: 1vw;
-            height: 1vh;
+            width: 24px;
+            height: 20px;
         }
     }
 }
@@ -84,8 +87,85 @@ html {
 }
 
 .checkBox {
+    display: flex;
+    flex-direction: column;
 
-    input {
-        // visibility: hidden;
+    >article:nth-of-type(1) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 2vh 3vw;
+
+        >img{
+            width: 118px;
+            height: 40px;
+
+        }
+
+        button {
+            border: none;
+            background-color: #d1dadd;
+
+            img {
+                width: 26px ;
+                height: 26px;
+                cursor: pointer;
+
+            }
+        }
     }
+
+    article:nth-of-type(2) {
+        text-align: center;
+
+        img{
+            width: 90px ;
+
+        }
+
+    }
+
+    article:nth-of-type(3) {
+  
+        
+        div{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+
+
+            padding-top: 2vh;
+    
+        
+
+    
+            
+            label{
+           
+                cursor: pointer;
+                height: 35px;
+                width: 120px;
+
+                margin-top: 1.2vh;
+
+                text-align: center;
+                color: white;
+                font-size: 1.2rem;
+                font-weight: 900;
+                padding-top: 1.3vh;
+
+
+            }
+
+            input {
+                visibility: hidden;
+                width: 0px;
+
+
+
+            }
+        }
+    }
+
+    
 }

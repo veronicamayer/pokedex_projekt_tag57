@@ -14,8 +14,12 @@ import BurgerMenu from "../../components/burgerMenu/BurgerMenu";
 
 // import DetailsPage from "../detailsPage/DetailsPage";
 
-import HeaderImage from "../../img/img1.png";
-import xIcon from "../../img/xVector.png";
+
+import menuIcon from "../../img/menu.png";
+import HeaderImage from '../../img/img1.png';
+import xIcon from '../../img/xVector.png';
+import type from '../../img/type.png';
+
 
 import TypeButton from "../../components/typeButton/TypeButton.jsx";
 
@@ -167,6 +171,7 @@ const ListPage = (props) => {
                     </Link>
                 ))}
             </section>
+
             <section className="checkBox filterTypesOff">
                 <article>
                     <img src={HeaderImage} alt="pokemonIcon" />
@@ -187,8 +192,10 @@ const ListPage = (props) => {
                 </article>
 
                 <article>
-                    <h1>Type</h1>
+                    <img src={type} alt="Type" />
+                </article>
 
+                <article>
                     <div>{typeButtons}</div>
 
                     <button
