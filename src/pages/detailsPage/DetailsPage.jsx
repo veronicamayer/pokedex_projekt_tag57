@@ -47,7 +47,7 @@ const DetailsPage = (props) => {
         };
 
         getPokemonDetails();
-    }, [params.id]);
+    }, [params.id, props.allTypes]);
 
     if (!pokemon) {
         return <div>Loading...</div>;
