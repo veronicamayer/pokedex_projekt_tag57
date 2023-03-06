@@ -10,20 +10,20 @@ import "./ListPage.scss";
 
 import Pokeball from "../../img/pokeball.png";
 
+import BurgerMenu from "../../components/burgerMenu/BurgerMenu";
+
 // import DetailsPage from "../detailsPage/DetailsPage";
 
-import menuIcon from "../../img/menu.png";
-import HeaderImage from '../../img/img1.png';
-import xIcon from '../../img/xVector.png';
+import HeaderImage from "../../img/img1.png";
+import xIcon from "../../img/xVector.png";
 
 import TypeButton from "../../components/typeButton/TypeButton.jsx";
 
-
-
 const ListPage = (props) => {
     const [pokemonList, setPokemonList] = useState([]);
-/*     const [isLoading, setIsLoading] = useState(true);
- */    const [childData, setChildData] = useState("");
+    /*     const [isLoading, setIsLoading] = useState(true); */
+    const [childData, setChildData] = useState("");
+    const [selectedTypes, setSelectedTypes] = useState([]);
 
     const fetchPokemon = async (limit, offset) => {
         try {
@@ -42,10 +42,10 @@ const ListPage = (props) => {
                         data.sprites.other.dream_world.front_default != null
                             ? data.sprites.other.dream_world.front_default
                             : data.sprites.other.home.front_default != null
-                                ? data.sprites.other.home.front_default
-                                : data.sprites.front_default != null
-                                    ? data.sprites.front_default
-                                    : Pokeball;
+                            ? data.sprites.other.home.front_default
+                            : data.sprites.front_default != null
+                            ? data.sprites.front_default
+                            : Pokeball;
                     return {
                         /* format the id as #00x */
                         id: `#${data.id.toString().padStart(3, "0")}`,
@@ -65,8 +65,9 @@ const ListPage = (props) => {
             );
 
             setPokemonList((prevList) => [...prevList, ...pokemonData]);
-/*             setIsLoading(false);
- */        } catch (error) {
+            /*             setIsLoading(false);
+             */
+        } catch (error) {
             console.log(error);
         }
     };
@@ -88,19 +89,23 @@ const ListPage = (props) => {
     // }, [pokemonList]);
 
     /* search */
-    const filteredPokemonList = pokemonList.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(childData.toLowerCase())
+    const filteredPokemonList = pokemonList.filter(
+        (pokemon) =>
+            pokemon.name.toLowerCase().includes(childData.toLowerCase()) &&
+            (selectedTypes.length === 0 || // include all items if no types are selected
+                pokemon.types
+                    .split(", ")
+                    .some((t) => selectedTypes.includes(t)))
     );
+
+    console.log(filteredPokemonList);
 
     const childToParent = (elem) => {
         setChildData(elem);
         console.log(childData);
     };
 
-
-
-
-     const allTypes = {
+    const allTypes = {
         normal: "#A8A77A",
         fire: "#EE8130",
         water: "#6390F0",
@@ -119,31 +124,38 @@ const ListPage = (props) => {
         dark: "#705746",
         steel: "#B7B7CE",
         fairy: "#D685AD",
-    }; 
+    };
 
-console.log(Object.keys(allTypes));
-
-                const typeButtons = Object.keys(allTypes).map((type) => (
-                   <> 
-                   <TypeButton key={type} label={type} />
-
-                    <input type="checkbox" name={type} id={type} value={type} /> 
-                    </>
-                ));
-
-
+    const typeButtons = Object.keys(allTypes).map((type) => (
+        <>
+            <TypeButton key={type} label={type} />
+            <input
+                type="checkbox"
+                name={type}
+                id={type}
+                value={type}
+                checked={selectedTypes.includes(type)}
+                onChange={(e) => {
+                    const isChecked = e.target.checked;
+                    setSelectedTypes(
+                        (prevTypes) =>
+                            isChecked
+                                ? [...prevTypes, type] // add the type to the array if it's checked
+                                : prevTypes.filter((t) => t !== type) // remove the type from the array if it's unchecked
+                    );
+                }}
+            />
+        </>
+    ));
 
     return (
         <>
             <div className="divHeader filterTypesOn">
-                <button onClick={() => {
-                    document.querySelectorAll(".filterTypesOn").forEach(e => e.style.display = "none")
-                    document.querySelectorAll(".filterTypesOff").forEach(e => e.style.display = "flex")
-                }}> <img src={menuIcon} alt="menuIcon" />  </button>
-                <Header childToParent={childToParent} />
+                
+            <Header childToParent={childToParent} buttonComponent={BurgerMenu} />
+        
             </div>
             <section className="listPage filterTypesOn">
-
                 {filteredPokemonList.map((pokemon, i) => (
                     <Link to={`/details/${pokemon.name}`}>
                         <ListItem
@@ -159,24 +171,38 @@ console.log(Object.keys(allTypes));
                 <article>
                     <img src={HeaderImage} alt="pokemonIcon" />
 
-                    <button onClick={() => {
-                        document.querySelectorAll(".filterTypesOn").forEach(e => e.style.display = "flex")
-                        document.querySelectorAll(".filterTypesOff").forEach(e => e.style.display = "none")
-                    }}> <img src={xIcon} alt="xIcon" />  </button>
+                    <button
+                        onClick={() => {
+                            document
+                                .querySelectorAll(".filterTypesOn")
+                                .forEach((e) => (e.style.display = "flex"));
+                            document
+                                .querySelectorAll(".filterTypesOff")
+                                .forEach((e) => (e.style.display = "none"));
+                        }}
+                    >
+                        {" "}
+                        <img src={xIcon} alt="xIcon" />{" "}
+                    </button>
                 </article>
 
                 <article>
                     <h1>Type</h1>
 
+                    <div>{typeButtons}</div>
 
-                      <div>{typeButtons}</div> 
- 
-               
-        
-
-
-
-
+                    <button
+                        onClick={() => {
+                            document
+                                .querySelectorAll(".filterTypesOn")
+                                .forEach((e) => (e.style.display = "flex"));
+                            document
+                                .querySelectorAll(".filterTypesOff")
+                                .forEach((e) => (e.style.display = "none"));
+                        }}
+                    >
+                    Search
+                    </button>
                 </article>
             </section>
         </>

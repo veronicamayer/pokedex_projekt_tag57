@@ -10,6 +10,8 @@ import "./DetailsPage.scss";
 
 import Header from "../../components/header/Header";
 
+import BackButton from "../../components/backButton/BackButton";
+
 const DetailsPage = (props) => {
     const params = useParams();
     console.log(params);
@@ -65,7 +67,7 @@ const DetailsPage = (props) => {
 
     return (
         <>
-        <Header/>
+        <Header buttonComponent={BackButton} />
         <section className={`detailsPage detailsPage--${pokemon.firsttype}`}>
             <div>
 
