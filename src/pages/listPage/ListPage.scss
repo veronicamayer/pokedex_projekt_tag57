@@ -53,3 +53,29 @@ html {
     }
     
 }
+
+.divHeader{
+    background-color: red;
+    padding-top: 18vh;
+    padding-left: 21vw;
+
+    >button{ 
+        background-color: green;
+        position: relative;
+        
+        z-index: 3;
+
+        >img{
+            width: 1vw;
+            height: 1vh;
+        }
+    }
+}
+
+.filterTypesOn{
+    display: flex;
+}
+
+.filterTypesOff{
+    display: none;
+}

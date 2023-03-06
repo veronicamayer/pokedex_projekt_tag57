@@ -1,23 +1,19 @@
 @charset "UTF-8";
-.listPage {
-  margin-top: 15vh; /* platz für fixed header */
+html {
   background-color: #d1dadd;
+}
+
+.listPage {
+  margin-top: 25vh; /* platz für fixed header */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   row-gap: 1vh;
   -moz-column-gap: 4vw;
        column-gap: 4vw;
-  padding: 0 4vw;
 }
-.listPage .header {
-  background-color: #d1dadd;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  top: 0px;
-  z-index: 2;
+.listPage a {
+  text-decoration: none;
 }
 .listPage .listItem {
   width: 44vw;
@@ -37,4 +33,26 @@
     width: 90vw;
     margin-top: 4vh;
   }
+}
+.divHeader {
+  background-color: red;
+  padding-top: 18vh;
+  padding-left: 21vw;
+}
+.divHeader > button {
+  background-color: green;
+  position: relative;
+  z-index: 3;
+}
+.divHeader > button > img {
+  width: 1vw;
+  height: 1vh;
+}
+
+.filterTypesOn {
+  display: flex;
+}
+
+.filterTypesOff {
+  display: none;
 }/*# sourceMappingURL=ListPage.css.map */

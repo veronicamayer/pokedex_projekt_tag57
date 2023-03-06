@@ -12,6 +12,12 @@ import Pokeball from "../../img/pokeball.png";
 
 import DetailsPage from "../detailsPage/DetailsPage";
 
+import menuIcon from "../../img/menu.png";
+import HeaderImage from '../../img/img1.png';
+import xIcon from '../../img/xVector.png';
+
+
+
 const ListPage = () => {
     const [pokemonList, setPokemonList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -92,14 +98,18 @@ const ListPage = () => {
 
     return (
         <>
-            <div>
+            <div className="divHeader filterTypesOn">
+                <button onClick={ () => {
+                     document.querySelectorAll(".filterTypesOn").forEach(e => e.style.display = "none")
+                     document.querySelectorAll(".filterTypesOff").forEach(e => e.style.display = "flex")
+                     } }> <img src={menuIcon} alt="menuIcon" />  </button>
                 <Header childToParent={childToParent} />
             </div>
-                    <section className="listPage">
+                    <section className="listPage filterTypesOn">
 
             {filteredPokemonList.map((pokemon, i) => (
                 <Link to={`/details/${pokemon.name}`}>
-                <ListItem
+                <ListItem 
                     key={i}
                     img_url={pokemon.image}
                     nr={pokemon.id}
@@ -107,6 +117,18 @@ const ListPage = () => {
                 ></ListItem>
                 </Link>
             ))}
+        </section>
+        <section className="filterTypesOff">
+            <h1>Type</h1>
+            <article> 
+                <img src={HeaderImage} alt="pokemonIcon" />
+                
+                <button onClick={ () => {
+                     document.querySelectorAll(".filterTypesOn").forEach(e => e.style.display = "flex")
+                     document.querySelectorAll(".filterTypesOff").forEach(e => e.style.display = "none")
+                     } }> <img src={xIcon} alt="xIcon" />  </button>
+            </article>
+
         </section>
         </>
     );
